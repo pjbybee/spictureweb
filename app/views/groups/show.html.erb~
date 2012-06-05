@@ -1,0 +1,68 @@
+<h3>
+  <%= @group.name %>
+</h3>
+
+<div>
+  <div>
+    <%= form_for :c2g, :url => insert_contact_groups_path do |f| %>
+      <%= f.hidden_field :group_id %>
+      <%= f.select(:contact_id, current_user.contacts.all.reject {|c| 
+                                                          c.groups.collect(&:id).include?(params[:group_id].to_i)
+                                                         }.collect{|c| 
+                                                           ["#{c.name}: #{c.email}", c.id]
+                                                         }, { :include_blank => true }
+                  ) 
+      %>
+
+      <%= f.submit("Add Contact") %>
+    <% end %>
+  </div>
+
+<br/> 
+
+  <div>
+    <%= form_for :contact_removal, :url => remove_contact_groups_path do |f| %>
+      <%= f.hidden_field :group_id, :value => params[:id] %>
+      <p>
+        <%= f.select(:contact_id,@group.contacts.collect{ |c|
+                              ["#{c.name}: #{c.email}", c.id]
+                             }, { :include_blank => true }
+                    ) 
+        %>
+        <%= f.submit "Remove Contact" %>
+      </p>
+    <% end %>
+  </div>
+</div>
+
+<br/>
+
+<div>
+  <%= form_for :album_mailer, :url => share_album_albums_path do |f| %>
+    <%#= f.error_messages %>
+    <%= f.hidden_field :group_id, :value => params[:id] %>
+    <p>
+      <%= f.select(:id, current_user.albums.collect{|a| [a.name, a.id]}, { :include_blank => true }) %>
+      <%= f.submit "Share Album with Group" %>
+    </p>
+  <% end %>
+</div>
+
+<br/>
+
+<h4>
+  Contacts:
+</h4>
+<div id="group_contacts">
+  <% @group.contacts.each do |c| %>
+    <li>
+      <div id="images_list">
+        <%= link_to c.name, c %>
+        <p>
+          <% c.email %>
+        </p>
+      </div>
+    </li>
+    <br/>
+  <% end %>
+</div>

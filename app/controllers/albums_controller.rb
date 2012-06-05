@@ -1,0 +1,90 @@
+class AlbumsController < ApplicationController
+
+  def new
+    @album = Album.new(:user_id => current_user.id)
+  end
+
+  def create
+    @album = Album.new(params[:album])
+    if @album.save
+      flash[:notice] = "Successfully created Album."
+      redirect_to current_user
+    else
+      render :action => 'new'
+    end
+  end
+
+  def edit
+    @album = Album.find(params[:id])
+  end
+
+  def update
+    @album = Album.find(params[:id])
+    if @album.update_attributes(params[:album])
+      flash[:notice] = "Successfully updated album."
+      redirect_to current_user
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def destroy
+    @album = Album.find(params[:id])
+    @album.destroy
+    flash[:notice] = "Successfully destroyed album."
+    redirect_to current_user
+  end
+
+  def show
+    @album = current_user.albums.find(params[:id])
+  end
+
+  def add_picture
+    @p2a = P2a.new(:album_id => params[:album_id])
+  end
+
+  def remove_picture
+    @album = current_user.albums.find(params[:album_id])
+  end
+
+  def share_album
+    @album = Album.find(params[:album_mailer][:id])
+    
+    @group = Group.find(params[:album_mailer][:group_id])
+    
+    @group.contacts.each do |c|
+      #mail the album to each contact in the group
+      AlbumMailer.album_shared(c, @album).deliver
+    end
+
+    redirect_to @album
+  end
+
+  def insert_picture
+    @p2a = P2a.new(:album_id => params[:album_id], :picture_id => params[:picture_id])
+    if @p2a.save
+      flash[:notice] = "Successfully Added Picture."
+      redirect_to @p2a.album
+    else
+      flash[:error] = "Could not add Picture to Album!"
+      redirect_to @p2a.album
+    end
+  end
+
+  def drop_picture
+    @album = current_user.albums.find(params[:album_id])
+    @p2a = @album.p2as.find_by_picture_id(params[:picture_id])
+
+    if @p2a.destroy
+      flash[:notice] = "Successfully Removed Picture."
+      redirect_to @album
+    else
+      flash[:error] = "Could not remove Picture from Album!"
+      redirect_to @album
+    end
+  end
+
+  def public_view
+    @album = Album.find(params[:id])
+  end
+end

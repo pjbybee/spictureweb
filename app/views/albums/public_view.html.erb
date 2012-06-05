@@ -1,0 +1,26 @@
+<script type="text/javascript">
+$(function() {
+  $("#user_images a").lightBox();
+});
+</script>
+
+<h3>
+  <%= @album.name %>
+</h3>
+
+<br/>
+
+<ul style="list-style-type: none" >
+  <% @album.pictures.each do |p| %>
+    <li>
+      <div id="user_images" >
+        <%= link_to(
+              image_tag(p.image_url, :width => 72, :height => 72),
+              p.image_url
+            ) if p.image?
+        %>
+      </div>
+    </li>
+    <br/>
+  <% end %>
+</ul>

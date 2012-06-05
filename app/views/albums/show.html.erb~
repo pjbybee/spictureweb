@@ -1,0 +1,43 @@
+<h3>
+  <%= @album.name %>
+</h3>
+
+<div>
+  <%= link_to "Add Picture", add_picture_albums_path(:album_id => @album.id) %>
+  <%= link_to "Remove Picture", remove_picture_albums_path(:album_id => @album.id) %>
+</div>
+
+<br/>
+
+<div>
+  <%= form_for :album_mailer, :url => share_album_albums_path do |f| %>
+    <%#= f.error_messages %>
+    <%= f.hidden_field :id, :value => params[:id] %>
+    <p>
+      <%= f.select(:group_id, current_user.groups.collect{|g| [g.name, g.id]}) %>
+      <%= f.submit "Share With Group" %>
+    </p>
+
+  <% end %>
+</div>
+
+<br/>
+
+<h4>
+  Pictures:
+</h4>
+
+<ul id="user_images" style="list-style-type: none">
+  <% @album.pictures.each do |p| %>
+    <li>
+      <div id="images_list">
+       <%= link_to(
+              image_tag(p.image_url, :width => 72, :height => 72),
+              p.image_url
+            ) if p.image?
+        %>
+      </div>
+    </li>
+    <br/>
+  <% end %>
+</ul>

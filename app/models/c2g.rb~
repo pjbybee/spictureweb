@@ -1,0 +1,4 @@
+class C2g < ActiveRecord::Base
+  belongs_to :contact
+  belongs_to :group
+end

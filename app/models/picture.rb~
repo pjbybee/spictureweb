@@ -1,0 +1,9 @@
+class Picture < ActiveRecord::Base
+  attr_accessible :name, :image, :description, :user_id
+
+  belongs_to :user
+
+  has_many :albums, :through => :p2as, :uniq => true
+
+  mount_uploader :image, ImageUploader
+end

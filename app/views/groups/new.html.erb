@@ -1,0 +1,16 @@
+<%= form_for @group do |f| %>
+  <%#= f.error_messages %>
+  <%= f.hidden_field :user_id %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+
+  <p><%= f.submit %></p>
+<% end %>

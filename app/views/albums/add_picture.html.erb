@@ -1,0 +1,17 @@
+<h3>
+  Add Picture
+</h3>
+
+<div>
+  <ul>
+    <% current_user.pictures.all.reject {|p| p.albums.collect(&:id).include?(params[:album_id].to_i)}.each do |p| %>
+       <li>
+          <%= link_to image_tag(p.image_url, :width => 72, :height => 72), insert_picture_albums_path(
+                                                                            :album_id => params[:album_id], 
+                                                                            :picture_id => p.id), 
+                                                                            :method => :post 
+          %>
+       </li>
+    <% end %>
+  </ul>
+</div>
