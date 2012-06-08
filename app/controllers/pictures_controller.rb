@@ -33,4 +33,9 @@ class PicturesController < ApplicationController
     flash[:notice] = "Successfully destroyed picture."
     redirect_to current_user
   end
+
+  def index
+    @pictures = current_user.pictures
+  end
+
 end

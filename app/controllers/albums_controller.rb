@@ -29,7 +29,7 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = Album.find(params[:id])
+    @album = current_user.albums.find(params[:id])
     @album.destroy
     flash[:notice] = "Successfully destroyed album."
     redirect_to current_user
@@ -48,14 +48,26 @@ class AlbumsController < ApplicationController
   end
 
   def share_album
-    @album = Album.find(params[:album_mailer][:id])
+    @album = current_user.albums.find(params[:album_mailer][:id])
     
-    @group = Group.find(params[:album_mailer][:group_id])
+    @group = current_user.groups.find(params[:album_mailer][:group_id])
     
     @group.contacts.each do |c|
       #mail the album to each contact in the group
       AlbumMailer.album_shared(c, @album).deliver
     end
+  
+    flash[:notice] = "Email Sent!"
+
+    redirect_to @album
+  end
+
+  def share_with_contact
+    @album = current_user.albums.find(params[:album_mailer][:id])
+    @contact = current_user.contacts.find(params[:album_mailer][:contact_id])
+    AlbumMailer.album_shared(@contact, @album).deliver
+
+    flash[:notice] = "Email Sent!"
 
     redirect_to @album
   end

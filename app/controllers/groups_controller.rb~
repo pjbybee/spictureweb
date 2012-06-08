@@ -56,7 +56,7 @@ class GroupsController < ApplicationController
 
   def remove_contact
     @group = current_user.groups.find(params[:contact_removal][:group_id])
-    @c2g = current_user.c2gs.find_by_contact_id(params[:contact_removal][:contact_id])
+    @c2g = @group.c2gs.find_by_contact_id(params[:contact_removal][:contact_id])
 
     if @c2g.destroy
       flash[:notice] = "Successfully removed Contact."

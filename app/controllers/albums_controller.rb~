@@ -72,7 +72,7 @@ class AlbumsController < ApplicationController
   end
 
   def drop_picture
-    @album = current_user.albums.find(params[:album_id))
+    @album = current_user.albums.find(params[:album_id])
     @p2a = @album.p2as.find_by_picture_id(params[:picture_id])
 
     if @p2a.destroy

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessible :name, :description, :user_id
   has_many :groups
   has_many :pictures
   has_many :contacts
@@ -14,5 +15,9 @@ class User < ActiveRecord::Base
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
     end
+  end
+
+  def name
+    first_name.capitalize + " " + last_name.capitalize
   end
 end

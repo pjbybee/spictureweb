@@ -23,9 +23,12 @@ SpictureWeb::Application.routes.draw do
   resources :albums do
     collection do
       get :add_picture
+      get :remove_picture
       post :insert_picture
+      post :drop_picture
       post :share_album
     end   
+
     member do
       get  :public_view
     end

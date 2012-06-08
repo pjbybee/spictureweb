@@ -8,14 +8,6 @@ a img {
   border: none;
 }
 
-ul, li {
-  list-style-type: none;
-}
-
-.interface_box {
-  background-color: #FFFFFF;
-}
-
 a {
   color: #0000FF;
 }

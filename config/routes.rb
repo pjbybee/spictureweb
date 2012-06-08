@@ -31,6 +31,7 @@ SpictureWeb::Application.routes.draw do
 
     member do
       get  :public_view
+      post :share_with_contact
     end
   end
 

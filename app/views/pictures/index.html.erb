@@ -1,12 +1,13 @@
 <% row_length = 10 %>
+
 <h3>
-  <%= @album.name %>
+  Pictures:
 </h3>
 
-<br/>
+<div id="user_images" >
 
-<table id="user_images">
-    <% @album.pictures.each_with_index do |p, ndx| %>
+ <table>
+    <% @pictures.each_with_index do |p, ndx| %>
       <% if ((ndx%row_length) == 0) && (ndx!=0) %>
         <tr>
       <% end %>
@@ -22,3 +23,4 @@
       <% end %>  
     <% end %>
   </table>
+</div>

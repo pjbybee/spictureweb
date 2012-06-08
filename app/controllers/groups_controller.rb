@@ -44,13 +44,14 @@ class GroupsController < ApplicationController
   end
 
   def insert_contact
+    @group = current_user.groups.find(params[:c2g][:group_id])
     @c2g = C2g.new(params[:c2g])
     if @c2g.save
       flash[:notice] = "Successfully Added Contact."
-      redirect_to @c2g.group
+      redirect_to @group
     else
       flash[:error] = "Could not add Contact to group!"
-      redirect_to @c2g.group
+      redirect_to @group
     end
   end
 

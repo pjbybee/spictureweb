@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
+session[:user_id] = 1
     if session[:user_id]
-      RAILS.logger(session)
-      @current_user = User.find(session[:user_id]) 
+      @current_user = User.find(session[:user_id])
     end unless @current_user
 
     @current_user     

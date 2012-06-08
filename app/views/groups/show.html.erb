@@ -5,7 +5,7 @@
 <div>
   <div>
     <%= form_for :c2g, :url => insert_contact_groups_path do |f| %>
-      <%= f.hidden_field :group_id %>
+      <%= f.hidden_field :group_id, :value => @group.id %>
       <%= f.select(:contact_id, current_user.contacts.all.reject {|c| 
                                                           c.groups.collect(&:id).include?(params[:group_id].to_i)
                                                          }.collect{|c| 

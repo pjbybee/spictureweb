@@ -7,7 +7,7 @@ class PicturesController < ApplicationController
     @picture = Picture.new(params[:picture])
     if @picture.save
       flash[:notice] = "Successfully created picture."
-      redirect_to current
+      redirect_to current_user
     else
       render :action => 'new'
     end
@@ -33,4 +33,9 @@ class PicturesController < ApplicationController
     flash[:notice] = "Successfully destroyed picture."
     redirect_to current_user
   end
+
+  def index
+
+  end
+
 end
