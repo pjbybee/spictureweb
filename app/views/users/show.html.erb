@@ -16,7 +16,7 @@
 </br>
 <div>
     <div id="groups_list">
-      <%= button_to "Create Album", new_album_path %>
+      <%= button_to "Create Album", new_album_path, :method => :get %>
 
       <ul id="user_albums" style="list-style-type: none" >
         <% current_user.albums.each do |a| %>
@@ -27,7 +27,7 @@
     </div> 
     
     <div id="albums_list" >
-      <%= button_to "Create Group", new_group_path %>
+      <%= button_to "Create Group", new_group_path, :method => :get %>
       <ul id="user_albums"groups style="list-style-type: none" >
         <% current_user.groups.each do |g| %>
           <li class="interface_box" style="background-color: #FFFFFF; width:200px; height:35px"><%= link_to g.name, g %></li>

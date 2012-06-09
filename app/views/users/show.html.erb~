@@ -3,13 +3,13 @@
 </div>
 
 <div>
-  <%= button_to "New Picture", new_picture_path %>
-  <%= button_to "New Contact", new_contact_path %>
+  <%= link_to "New Picture", new_picture_path %>
+  <%= link_to "New Contact", new_contact_path %>
 <div>
   <br/>
 <div>
-  <%= button_to "View Pictures", pictures_path %>
-  <%= button_to "View Contacts", contacts_path %>
+  <%= link_to "View Pictures", pictures_path %>
+  <%= link_to "View Contacts", contacts_path %>
 <div>
 
 </br>

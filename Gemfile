@@ -47,3 +47,5 @@ gem "carrierwave"
 
 gem "mail", "2.4.4"
 
+gem 'client_side_validations' 
+
