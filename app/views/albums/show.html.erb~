@@ -1,6 +1,6 @@
 <% row_length = 10 %>
 <h3>
-  <%= @album.name %>
+ Album: <%= @album.name %>
 </h3>
 
 <div>
