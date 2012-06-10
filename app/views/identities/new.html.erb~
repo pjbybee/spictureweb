@@ -1,4 +1,12 @@
-<%= form_for @identity, :url => "/auth/identity/register", :validate => true do %>
+<h3>
+Welcome to Myweb Picturesharing Service.
+<h3>
+
+<br/>
+<h4>
+Create a new account  
+</h4>
+<%= form_tag "/auth/identity/register", :validate => true do %>
   <% if @identity && @identity.errors.any? %>
     <div class="error_messages">
       <h2><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</h2>

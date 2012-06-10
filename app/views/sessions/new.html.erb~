@@ -1,6 +1,6 @@
 <h3>
-SpictureWeb
-</h3>
+Welcome to Myweb Picturesharing Service.
+<h3>
 <p>
   <%= link_to "Create an account", new_identity_path %> or login below.
 </p>

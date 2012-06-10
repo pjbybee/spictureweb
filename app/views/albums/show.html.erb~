@@ -9,6 +9,8 @@
   <%= link_to "Remove Picture", remove_picture_albums_path(:album_id => @album.id) %>
   <br/>
   <%= link_to "View Public Album Page", public_view_album_path(:album_id => @album.id) %>
+  <br/>
+  <%= public_view_album_url(@album) %>
 </div>
 
 <br/>

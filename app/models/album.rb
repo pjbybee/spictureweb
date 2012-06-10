@@ -9,7 +9,7 @@ class Album < ActiveRecord::Base
   has_many :groups, :through => :group_albumizations
 
   def public_url
-    "albums/" + self.id.to_s + "/public_view"
+     "http://ec2-23-23-233-62.compute-1.amazonaws.com/albums/" + self.id.to_s + "/public_view"
   end
 
 end
