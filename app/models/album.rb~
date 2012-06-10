@@ -9,6 +9,8 @@ class Album < ActiveRecord::Base
   has_many :groups, :through => :group_albumizations
 
   def public_url
-    "http://www.google.com"
+    #TODO Need to get an actual public URL
+    "albums/" + self.id.to_s + "/public_view"
   end
+
 end

@@ -1,24 +1,24 @@
 <% row_length = 10 %>
 <h3>
-  <%= @album.name %>
+  Album: <%= @album.name %>
 </h3>
 
 <br/>
 
 <table id="user_images">
-    <% @album.pictures.each_with_index do |p, ndx| %>
-      <% if ((ndx%row_length) == 0) && (ndx!=0) %>
-        <tr>
-      <% end %>
-        <td>
-          <%= link_to(
-            image_tag(p.image_url, :width => 72, :height => 72),
-            p.image_url
-          ) if p.image?
-          %>
-        </td>
-      <% if ((ndx%row_length) == 0) && (ndx!=0) %>
-        </tr>
-      <% end %>  
+  <% @album.pictures.each_with_index do |p, ndx| %>
+    <% if ((ndx%row_length) == 0) && (ndx!=0) %>
+      <tr>
     <% end %>
-  </table>
+      <td>
+        <%= link_to(
+          image_tag(p.image_url, :width => 72, :height => 72),
+          p.image_url
+        ) if p.image?
+        %>
+      </td>
+    <% if ((ndx%row_length) == 0) && (ndx!=0) %>
+      </tr>
+    <% end %>  
+  <% end %>
+</table>
