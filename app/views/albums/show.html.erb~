@@ -10,7 +10,8 @@
   <br/>
   <%= link_to "View Public Album Page", public_view_album_path(:album_id => @album.id) %>
   <br/>
-  <%= public_view_album_url(@album) %>
+  <%= public_view_album_url(@album) %>  
+   <br/>>
 </div>
 
 <br/>
